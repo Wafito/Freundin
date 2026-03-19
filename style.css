@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600;700&display=swap');
+
+:root {
+    /* Harmonische Palette: Meeresblau, Rosarot & Sonnengelb */
+    --bg-warm: #e0f2f7;           /* Helles, frisches Meeresblau */
+    --card-bg: #ffffff;
+    --text-main: #2c3e50;         /* Tiefes Blau-Grau für bessere Lesbarkeit */
+    --accent-blue: #a2d2ff;       /* Sanftes Pastell-Blau */
+    --accent-yellow: #ffea00;     /* Strahlendes Sonnengelb */
+    --btn-primary: #ff4d6d;       /* Herzliches Rosarot */
+    --btn-primary-hover: #ff758f;  /* Etwas helleres Rosarot beim Drüberfahren */
+    --btn-secondary: #0077b6;     /* Kräftiges Meeresblau */
+    --error-red: #fb6f92;         /* Weiches Rot */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-warm);
+    /* Verlauf von Meeresblau zu einem sanften Gelb-Schimmer */
+    background-image: radial-gradient(circle at top left, #caf0f8 0%, transparent 55%),
+                      radial-gradient(circle at bottom right, #fff9db 0%, transparent 50%);
+    color: var(--text-main);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+body.overflow-hidden {
+    overflow: hidden !important;
+}
+
+.card {
+    background: var(--card-bg);
+    padding: 3rem 2rem;
+    border-radius: 40px;
+    /* Schatten in Blau-Nuancen für den "Ocean-Look" */
+    box-shadow: 0 20px 50px rgba(0, 119, 182, 0.15);
+    max-width: 100%;
+    width: 380px;
+    animation: floatCard 4s ease-in-out infinite;
+    position: relative;
+    z-index: 10;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+h1, h2, h3 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.8rem;
+    color: var(--btn-primary); /* Rosarot für die Emotion */
+    margin-top: 0;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+}
+
+p {
+    font-size: 1.05rem;
+    font-weight: 400;
+    line-height: 1.6;
+    margin-bottom: 1.8rem;
+    color: var(--text-main);
+}
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    width: 100%;
+}
+
+button {
+    border: none;
+    padding: 15px 30px;
+    border-radius: 20px; 
+    font-size: 1.1rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    margin: 5px 0;
+    width: 100%;
+    max-width: 280px;
+}
+
+.btn-primary { 
+    background-color: var(--btn-primary); 
+    color: white; 
+    box-shadow: 0 8px 15px rgba(255, 77, 109, 0.3);
+}
+
+.btn-primary:hover { 
+    background-color: var(--btn-primary-hover);
+    transform: translateY(-5px) rotate(-1deg); 
+    box-shadow: 0 12px 20px rgba(255, 77, 109, 0.4); 
+}
+
+.btn-secondary { 
+    background-color: var(--btn-secondary); 
+    color: white; 
+    box-shadow: 0 8px 15px rgba(0, 119, 182, 0.2);
+}
+
+.btn-secondary:hover { 
+    background-color: #0096c7;
+    transform: translateY(-5px) rotate(1deg); 
+    box-shadow: 0 12px 20px rgba(0, 119, 182, 0.3);
+}
+
+.btn-no { 
+    background-color: transparent; 
+    color: #555; 
+    border: 2px dashed var(--accent-blue);
+    position: relative; 
+    width: auto;
+    min-width: 120px;
+    transition: all 0.2s ease;
+}
+
+.btn-no:hover {
+    background-color: #f0faff;
+    color: var(--btn-secondary);
+}
+
+.btn-whatsapp { 
+    background-color: #25D366; 
+    color: white; 
+    text-decoration: none; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px; 
+    padding: 15px 25px; 
+    margin-top: 20px;
+    font-weight: 700;
+    box-shadow: 0 8px 15px rgba(37, 211, 102, 0.2);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.4;
+}
+
+.status-box {
+    margin-top: 20px;
+    background: #fdfdfd;
+    padding: 20px;
+    border-radius: 25px;
+    border: 2px solid var(--accent-yellow); /* Gelber Akzent für die Box */
+}
+
+.progress-bar {
+    width: 100%; 
+    height: 14px; 
+    background: #e9ecef; 
+    border-radius: 10px; 
+    overflow: hidden; 
+    margin: 15px 0;
+}
+
+#progress-fill {
+    width: 0%; 
+    height: 100%; 
+    background: linear-gradient(90deg, var(--btn-secondary), var(--btn-primary)); 
+    border-radius: 10px;
+    transition: width 0.1s linear;
+}
+
+#percent {
+    font-size: 1.2rem;
+    color: var(--btn-secondary);
+    font-weight: 700;
+    margin: 0;
+}
+
+.meme-img { 
+    width: 100%; 
+    max-width: 280px;
+    border-radius: 20px; 
+    margin: 15px 0; 
+    border: 4px solid var(--accent-blue);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.error-text { 
+    color: var(--error-red); 
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.hidden { display: none !important; }
+
+/* Herz & Konfetti Animation */
+.heart {
+    position: fixed; 
+    top: -10%; 
+    font-size: 2.5rem; 
+    z-index: 9999;
+    animation: fall linear forwards;
+    pointer-events: none;
+    /* Glow-Effekt passend zum Rosarot */
+    filter: drop-shadow(0 2px 4px rgba(255, 77, 109, 0.4));
+}
+
+@keyframes fall {
+    0% { transform: translateY(-10vh) rotate(-15deg); opacity: 0; }
+    10% { opacity: 1; }
+    100% { transform: translateY(110vh) rotate(45deg); opacity: 0; }
+}
+
+@keyframes floatCard {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+    100% { transform: translateY(0px); }
+}

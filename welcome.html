@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scanning...</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="center-content">
+    <div class="card">
+        <h2>Willkommen 😊</h2>
+        <p>Schön, dass du hier bist.</p>
+        <div class="status-box">
+            <p id="status-text">Scanning relationship status von Wafi ...</p>
+            <div class="progress-bar"><div id="progress-fill"></div></div>
+            <p id="percent">0%</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        // Automatischer Redirect nach Scan
+        let width = 0;
+        let interval = setInterval(() => {
+            if (width >= 100) {
+                clearInterval(interval);
+                setTimeout(() => { window.location.href = 'error.html'; }, 500);
+            } else {
+                width++;
+                document.getElementById('progress-fill').style.width = width + '%';
+                document.getElementById('percent').innerText = width + '%';
+            }
+        }, 40);
+    </script>
+</body>
+</html>
