@@ -2,23 +2,35 @@
 
 :root {
     /* Harmonische Palette: Meeresblau, Rosarot & Sonnengelb */
-    --bg-warm: #e0f2f7;           /* Helles, frisches Meeresblau */
-    --card-bg: #ffffff;
-    --text-main: #2c3e50;         /* Tiefes Blau-Grau für bessere Lesbarkeit */
-    --accent-blue: #a2d2ff;       /* Sanftes Pastell-Blau */
-    --accent-yellow: #ffea00;     /* Strahlendes Sonnengelb */
+    --bg-ocean-deep: #0077b6;      /* Dunkles Meeresblau für unten */
+    --bg-sky-light: #90e0ef;       /* Helles Himmelblau für oben */
+    --sun-yellow: #ffea00;         /* Sonniges Gelb */
+    --card-bg: rgba(246, 233, 240, 0.9); /* Weißlich-transparent für bessere Lesbarkeit auf Blau */
+    --text-main: #1d3557;         /* Sehr dunkles Blau für Lesbarkeit */
+    --accent-blue: #4a9eec;       
+    --accent-yellow: #ffea00;     
     --btn-primary: #ff4d6d;       /* Herzliches Rosarot */
-    --btn-primary-hover: #ff758f;  /* Etwas helleres Rosarot beim Drüberfahren */
-    --btn-secondary: #0077b6;     /* Kräftiges Meeresblau */
-    --error-red: #fb6f92;         /* Weiches Rot */
+    --btn-primary-hover: #ff758f; 
+    --btn-secondary: #0077b6;     
+    --error-red: #fb6f92;         
 }
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: var(--bg-warm);
-    /* Verlauf von Meeresblau zu einem sanften Gelb-Schimmer */
-    background-image: radial-gradient(circle at top left, #caf0f8 0%, transparent 55%),
-                      radial-gradient(circle at bottom right, #fff9db 0%, transparent 50%);
+    /* Hintergrund-Konstruktion:
+       1. Ein radialer Gradient für die gelbe Sonne oben in der Mitte
+       2. Ein linearer Gradient für den Übergang von Himmelblau (oben) zu Meeresblau (unten)
+    */
+    background-color: var(--bg-ocean-deep);
+    background-image: 
+        radial-gradient(circle at 50% 25%, var(--sun-yellow) 0%, transparent 40%),
+        linear-gradient(to bottom, 
+            var(--bg-sky-light) 0%, 
+            var(--bg-sky-light) 30%,    /* Himmel bleibt oben stabil */
+            var(--bg-ocean-deep) 70%,   /* Ab hier ist es volles Meeresblau */
+            var(--bg-ocean-deep) 100%
+        );
+    background-attachment: fixed;
     color: var(--text-main);
     margin: 0;
     display: flex;
@@ -39,29 +51,30 @@ body.overflow-hidden {
     background: var(--card-bg);
     padding: 3rem 2rem;
     border-radius: 40px;
-    /* Schatten in Blau-Nuancen für den "Ocean-Look" */
-    box-shadow: 0 20px 50px rgba(0, 119, 182, 0.15);
+    /* Verstärkter Schatten für Abhebung vom blauen Hintergrund */
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
     max-width: 100%;
     width: 380px;
     animation: floatCard 4s ease-in-out infinite;
     position: relative;
     z-index: 10;
-    border: 1px solid rgba(255, 255, 255, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px); /* Macht die Card edler */
 }
 
 h1, h2, h3 {
     font-family: 'Dancing Script', cursive;
     font-size: 2.8rem;
-    color: var(--btn-primary); /* Rosarot für die Emotion */
+    color: var(--btn-primary); 
     margin-top: 0;
     margin-bottom: 1rem;
     line-height: 1.2;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
 }
 
 p {
     font-size: 1.05rem;
-    font-weight: 400;
+    font-weight: 600; /* Etwas dicker für bessere Lesbarkeit */
     line-height: 1.6;
     margin-bottom: 1.8rem;
     color: var(--text-main);
@@ -89,34 +102,34 @@ button {
     max-width: 280px;
 }
 
+/* Buttons mit Rosarotem Text wie gewünscht */
 .btn-primary { 
     background-color: var(--btn-primary); 
-    color: white; 
-    box-shadow: 0 8px 15px rgba(255, 77, 109, 0.3);
+    color: whitesmoke; /* Rosarot als Textfarbe */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
 
 .btn-primary:hover { 
-    background-color: var(--btn-primary-hover);
+    background-color: #fa1e4a;
     transform: translateY(-5px) rotate(-1deg); 
-    box-shadow: 0 12px 20px rgba(255, 77, 109, 0.4); 
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15); 
 }
 
 .btn-secondary { 
-    background-color: var(--btn-secondary); 
-    color: white; 
-    box-shadow: 0 8px 15px rgba(0, 119, 182, 0.2);
+    background-color: var(--bg-ocean-deep); 
+    color: var(--sun-yellow); /* Rosarot als Textfarbe */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
 
 .btn-secondary:hover { 
-    background-color: #0096c7;
+    background-color: var(--bg-sky-light);
     transform: translateY(-5px) rotate(1deg); 
-    box-shadow: 0 12px 20px rgba(0, 119, 182, 0.3);
 }
 
 .btn-no { 
-    background-color: transparent; 
-    color: #555; 
-    border: 2px dashed var(--accent-blue);
+    background-color: whitesmoke; 
+    color: black; 
+    border: 2px dashed black;
     position: relative; 
     width: auto;
     min-width: 120px;
@@ -124,8 +137,7 @@ button {
 }
 
 .btn-no:hover {
-    background-color: #f0faff;
-    color: var(--btn-secondary);
+    background-color: rgba(255, 77, 109, 0.1);
 }
 
 .btn-whatsapp { 
@@ -152,7 +164,7 @@ button {
     background: #fdfdfd;
     padding: 20px;
     border-radius: 25px;
-    border: 2px solid var(--accent-yellow); /* Gelber Akzent für die Box */
+    border: 2px solid var(--accent-yellow); 
 }
 
 .progress-bar {
@@ -204,7 +216,6 @@ button {
     z-index: 9999;
     animation: fall linear forwards;
     pointer-events: none;
-    /* Glow-Effekt passend zum Rosarot */
     filter: drop-shadow(0 2px 4px rgba(255, 77, 109, 0.4));
 }
 
